@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PostCard from './PostCard';
 
 export interface Post {
@@ -41,7 +41,12 @@ const Posts: React.FC = () => {
     setLoadingPost(false);
   }
 
-  loadPosts();
+  useEffect(
+    () => {
+      loadPosts();
+    },
+    []
+  )
 
   return (
     <div>
