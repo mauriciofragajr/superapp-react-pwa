@@ -7,8 +7,8 @@ import Posts from './components/Posts';
 const App: React.FC = () => {
   return (
     <div>
-      <GlobalStyle/>
-      <Header />
+      <GlobalStyle />
+      <Header/>
       <Posts/>
     </div>
   );
