@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PostCard from './PostCard';
 
 export interface Post {
   id: number,
@@ -34,7 +35,7 @@ const Posts: React.FC = () => {
   const [loadingPosts, setLoadingPost] = useState<boolean>(true);
 
   const loadPosts = async () => {
-    const response = await fetch('https://www.garagemdigital.io/wp-json/wp/v2/posts?_fields=author,id,excerpt,title,link,date,categories,tags,jetpack_featured_media_url,slug');
+    const response = await fetch('https://www.garagemdigital.io/wp-json/wp/v2/posts?_fields=author,id,excerpt,title,link,date,categories,tags,jetpack_featured_media_url,slug&per_page=3');
     const data = await response.json();
     setPosts(data);
     setLoadingPost(false);
@@ -47,10 +48,7 @@ const Posts: React.FC = () => {
       {loadingPosts ? <p>Carregando postagens</p> : null}
       <ul>
         {posts?.map((post: Post) => (
-          <li key={post.id}>
-            {post.title.rendered}
-            <a href={post.link} target="_blank">Ver</a>
-          </li>
+          <PostCard post={post} key={post.id}/>
         ))}
       </ul>
     </div>
